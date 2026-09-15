@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import logo from '../assets/icons/Orban-area-logo.svg'
+import logo from "../assets/icons/orban-area-logo.svg";
 import { Link, useNavigate } from 'react-router-dom'
 import { DriverContext } from '../context/DriverContext'
 
