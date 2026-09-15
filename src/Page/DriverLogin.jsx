@@ -20,7 +20,7 @@ export const DriverLogin = () => {
     setLoading(true)
 
     try {
-      const res = await fetch(`${API_BASE}/drivers/login`, {
+      const res = await fetch(`${API_BASE}/api/drivers/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

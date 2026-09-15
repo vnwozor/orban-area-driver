@@ -36,7 +36,7 @@ const DriverSignup = () => {
     try {
       const currentLocation = await tryGetLocation()
 
-      const res = await fetch(`${API_BASE}/drivers`, {
+      const res = await fetch(`${API_BASE}/api/drivers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
