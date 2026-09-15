@@ -1,0 +1,88 @@
+<<<<<<< HEAD
+.card-div-top-section {
+    display:flex;
+    gap:30px;
+}
+
+.card-driver-name {
+    font-size:19px;
+    margin-bottom:2px;
+}
+
+.card-driver-verify {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:inder;
+    border-radius:6px;
+    padding:6px 6px;
+    border:1px solid rgb(233, 231, 231);
+    font-size:12px;
+    font-weight:600;
+    color:rgb(58, 151, 58);
+}
+
+.card-car-name {
+    font-size:14px;
+    margin-bottom:2px;
+    color:rgb(165, 165, 165);
+}
+
+.card-pickup {
+    font-size:14px;
+    color:orange;
+}
+
+.card-dropoff {
+    font-size:14px;
+    color:rgb(58, 151, 58);
+}
+
+.card-div-bottom-section {
+    display:flex;
+    gap:45px;
+=======
+.card-div-top-section {
+    display:flex;
+    gap:30px;
+}
+
+.card-driver-name {
+    font-size:19px;
+    margin-bottom:2px;
+}
+
+.card-driver-verify {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:inder;
+    border-radius:6px;
+    padding:6px 6px;
+    border:1px solid rgb(233, 231, 231);
+    font-size:12px;
+    font-weight:600;
+    color:rgb(58, 151, 58);
+}
+
+.card-car-name {
+    font-size:14px;
+    margin-bottom:2px;
+    color:rgb(165, 165, 165);
+}
+
+.card-pickup {
+    font-size:14px;
+    color:orange;
+}
+
+.card-dropoff {
+    font-size:14px;
+    color:rgb(58, 151, 58);
+}
+
+.card-div-bottom-section {
+    display:flex;
+    gap:45px;
+>>>>>>> a88e7ad884e63cc5fd129b45974814f39519bb15
+}

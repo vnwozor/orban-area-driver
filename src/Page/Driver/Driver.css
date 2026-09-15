@@ -1,0 +1,79 @@
+
+.driver-btn-container {
+    display:flex;
+    gap:10px;
+}
+
+.driver-div-each-request {
+    padding:15px;
+    border-radius:10px;
+    border:1px solid black;
+}
+
+.driver-request-div {
+    display:flex;
+    justify-content:space-between;
+}
+
+.driver-accept-btn {
+    
+    padding:8px 0px;
+    width:50%;
+    margin-top:10px;
+    color:white;
+    background-color:black;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+
+.driver-reject-btn { 
+    padding:8px 0px;
+    width:50%;
+    margin-top:10px;
+    color:black;
+    background-color:white;
+    border:1px solid black;
+    border-radius:8px;
+    font-size:16px; }
+
+.driver-btn-container {
+    display:flex;
+    gap:10px;
+}
+
+.driver-div-each-request {
+    padding:15px;
+    border-radius:10px;
+    border:1px solid black;
+}
+
+.driver-request-div {
+    display:flex;
+    justify-content:space-between;
+}
+
+.driver-accept-btn {
+    
+    padding:8px 0px;
+    width:50%;
+    margin-top:10px;
+    color:white;
+    background-color:black;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+
+.driver-reject-btn { 
+    padding:8px 0px;
+    width:50%;
+    margin-top:10px;
+    color:black;
+    background-color:white;
+    border:1px solid black;
+    border-radius:8px;
+    font-size:16px;
+}
