@@ -3,7 +3,7 @@ import logo from "../assets/icons/orban-area-logo.svg";
 import { Link, useNavigate } from 'react-router-dom'
 import { DriverContext } from '../context/DriverContext'
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = import.meta.env.VITE_API_URL
 
 export const DriverLogin = () => {
   const { setCurrentDriver } = useContext(DriverContext)

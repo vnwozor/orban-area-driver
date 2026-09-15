@@ -16,20 +16,16 @@ export const Driver = () => {
         startTrackingDriver,
     } = useContext(ShopContext)
 
-    // this driver only needs to see rides nobody has responded to yet —
-    // same "one status field decides what shows" idea from the rider side
+
     const pendingRequests = requests.filter((r) => r.status === 'pending')
 
-    // the trip THIS driver is currently on, if any — once accepted, its
-    // pickup/dropoff become the route we show on the driver's own map
+
     const activeRequest = requests.find(
         (r) => r.driverId === currentDriver.id && (r.status === 'accepted' || r.status === 'ongoing')
     )
 
     const handleAccept = (request) => {
         acceptRequest(request.id)
-        // start the driver moving from their current known location, and tell
-        // the tracker which pickup point + request to watch for "arrival"
         startTrackingDriver(currentDriver.currentLocation, {
             pickupLocation: request.pickupLocation,
             requestId: request.id,
@@ -47,8 +43,6 @@ export const Driver = () => {
                     )}
 
                     {pendingRequests.map((request) => {
-                        // requests only store a userId — look up the actual
-                        // rider's details from the users list to display them
                         const rider = users.find((u) => u.id === request.userId)
 
                         return (

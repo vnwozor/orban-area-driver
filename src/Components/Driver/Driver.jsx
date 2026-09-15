@@ -3,7 +3,7 @@ import { MapView } from '../MapView/MapView'
 import { Navbar } from '../NavBar/Navbar'
 import { DriverContext } from '../../context/DriverContext'
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = import.meta.env.VITE_API_URL
 
 // ---- helper: straight-line distance ----
 function getDistanceKm(a, b) {

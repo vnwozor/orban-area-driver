@@ -4,7 +4,7 @@ import './Settings.css'
 import { DriverContext } from '../context/DriverContext'
 import { Navbar } from '../Components/NavBar/Navbar'
 
-const API_BASE = 'http://localhost:5000/api'
+const API_BASE = import.meta.env.VITE_API_URL
 
 const Settings = () => {
     const { currentDriver, logout } = useContext(DriverContext)
