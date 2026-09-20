@@ -6,7 +6,7 @@ import { DriverContext } from '../context/DriverContext'
 const API_BASE = import.meta.env.VITE_API_URL
 
 const DriverSignup = () => {
-  const { setCurrentDriver } = useContext(DriverContext)
+  const { setSession } = useContext(DriverContext)
   const navigate = useNavigate()
 
   const [firstName, setFirstName] = useState('')
@@ -15,10 +15,10 @@ const DriverSignup = () => {
   const [phone, setPhone] = useState('')
   const [plate, setPlate] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  
   const tryGetLocation = () =>
     new Promise((resolve) => {
       if (!navigator.geolocation) return resolve(undefined)
@@ -51,8 +51,8 @@ const DriverSignup = () => {
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Registration failed')
 
-      setCurrentDriver(data)
-      navigate('/') 
+      setSession(data)
+      navigate('/')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -80,8 +80,8 @@ const DriverSignup = () => {
           <label htmlFor="firstName">Full Name</label>
 
           <div className='name-inputs'>
-            <input 
-            type="text" 
+            <input
+            type="text"
             id="firstName"
             placeholder='First Name'
             value={firstName}
@@ -89,8 +89,8 @@ const DriverSignup = () => {
             required
            />
 
-            <input 
-            type="text" 
+            <input
+            type="text"
             id="surname"
             placeholder='Surname'
             value={surname}
@@ -103,7 +103,7 @@ const DriverSignup = () => {
         <div className='form-group'>
           <label htmlFor="email">Email</label>
 
-          <input 
+          <input
           type="email"
           id='email'
           placeholder='example@gmail.com'
@@ -116,7 +116,7 @@ const DriverSignup = () => {
         <div className='form-group'>
           <label htmlFor="phone">Phone Number</label>
 
-          <input 
+          <input
           type="tel"
           id='phone'
           placeholder='+234 1234567890'
@@ -129,7 +129,7 @@ const DriverSignup = () => {
         <div className='form-group'>
           <label htmlFor="plate">Plate Number</label>
 
-          <input 
+          <input
           type="text"
           id='plate'
           placeholder='***************'
@@ -142,7 +142,7 @@ const DriverSignup = () => {
         <div className='form-group'>
           <label htmlFor="password">Password</label>
 
-          <input 
+          <input
           type="password"
           id='password'
           placeholder='***************'
@@ -157,14 +157,14 @@ const DriverSignup = () => {
         <button type="submit" disabled={loading}>
           {loading ? 'Creating account...' : 'Sign Up'}
         </button>
-
-        <p className='login-text'>
-          Already have an account?{" "}
-          <Link to="/login">
-            Login
-          </Link>
-        </p>
       </form>
+
+      <p className='login-text'>
+        Already have an account?{" "}
+        <Link to="/login">
+          Login
+        </Link>
+      </p>
     </div>
     </main>
   )

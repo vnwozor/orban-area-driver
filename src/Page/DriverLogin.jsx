@@ -6,11 +6,12 @@ import { DriverContext } from '../context/DriverContext'
 const API_BASE = import.meta.env.VITE_API_URL
 
 export const DriverLogin = () => {
-  const { setCurrentDriver } = useContext(DriverContext)
+  const { setSession } = useContext(DriverContext)
   const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -28,8 +29,8 @@ export const DriverLogin = () => {
       const data = await res.json()
       if (!res.ok) throw new Error(data.message || 'Login failed')
 
-      setCurrentDriver(data)
-      navigate('/') 
+      setSession(data)
+      navigate('/')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -51,13 +52,12 @@ export const DriverLogin = () => {
     
           <h1>Login as a driver</h1>
           <p className='logo-create'>Login to your Account</p>
-    
+
           <form onSubmit={handleSubmit}>
-    
             <div className='form-group'>
               <label htmlFor="email">Email</label>
-    
-              <input 
+
+              <input
               type="email"
               id='email'
               placeholder='example@gmail.com'
@@ -66,11 +66,11 @@ export const DriverLogin = () => {
               required
               />
             </div>
-    
+
             <div className='form-group'>
               <label htmlFor="password">Password</label>
-    
-              <input 
+
+              <input
               type="password"
               id='password'
               placeholder='***************'
@@ -85,17 +85,14 @@ export const DriverLogin = () => {
             <button type="submit" disabled={loading}>
               {loading ? 'Logging in...' : 'Login'}
             </button>
-    
-            <p className='login-text'>
-              Want to be a Driver?{" "}
-              <Link to="/signup">
-                Sign Up
-              </Link>
-
-                
-            
-            </p>
           </form>
+    
+          <p className='login-text'>
+            Want to be a Driver?{" "}
+            <Link to="/signup">
+              Sign Up
+            </Link>
+          </p>
         </div>
     </main>
   )
