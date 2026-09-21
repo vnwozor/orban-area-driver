@@ -1,27 +1,21 @@
-body {
-  margin: 0 20px;
-  margin-top:70px;
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap');
+@import './theme.css';
 
-}
+/* Base styles */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;letter-spacing:-.02em;line-height:1.12;font-weight:700}
+h1{font-size:clamp(30px,4.4vw,46px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(21px,2.4vw,26px)}
+h3{font-size:18px}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+svg.ic{width:20px;height:20px;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+svg.ic.fill{fill:currentColor;stroke:none}
 
-p {
-    font-family:inder;
-    margin:0px;
-}
-
-h1 {
-    margin:0px;
-}
-
-
-
-button {
-    font-family:inder;
-}
-
-a.active p{
-    background-color:black;
-    color:white;
-    padding:6px 10px;
-    border-radius:5px;
-}

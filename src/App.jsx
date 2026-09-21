@@ -1,52 +1,35 @@
-import React, { useContext } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import './App.css'
-import { DriverContextProvider, DriverContext } from './context/DriverContext'
-import { DriverLogin } from './Page/DriverLogin'
-import DriverSignup from './Page/DriverSignup'
-import Settings from './Page/Settings'
-import { Driver } from './Components/Driver/Driver'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import DriverShell, { RequireDriver } from './Components/Layout/DriverShell'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
+import Home from './Pages/Home'
+import Trips from './Pages/Trips'
+import History from './Pages/History'
+import Vehicle from './Pages/Vehicle'
+import Notifications from './Pages/Notifications'
+import Profile from './Pages/Profile'
 
-
-function RequireDriver({ children }) {
-    const { currentDriver } = useContext(DriverContext)
-    if (!currentDriver) return <Navigate to='/login' replace />
-    return children
-}
-
-function AppRoutes() {
+export default function App() {
     return (
         <Routes>
-            <Route path='/login' element={<DriverLogin />} />
-            <Route path='/signup' element={<DriverSignup />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
             <Route
-                path='/'
                 element={
                     <RequireDriver>
-                        <Driver />
+                        <DriverShell />
                     </RequireDriver>
                 }
-            />
-            <Route
-                path='/settings'
-                element={
-                    <RequireDriver>
-                        <Settings />
-                    </RequireDriver>
-                }
-            />
+            >
+                <Route path='/' element={<Home />} />
+                <Route path='/trips' element={<Trips />} />
+                <Route path='/history' element={<History />} />
+                <Route path='/vehicle' element={<Vehicle />} />
+                <Route path='/notifications' element={<Notifications />} />
+                <Route path='/profile' element={<Profile />} />
+            </Route>
+            <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
     )
 }
-
-function App() {
-    return (
-        <DriverContextProvider>
-            <BrowserRouter>
-                <AppRoutes />
-            </BrowserRouter>
-        </DriverContextProvider>
-    )
-}
-
-export default App
