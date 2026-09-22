@@ -1,16 +1,29 @@
-# React + Vite
+# Orban driver app (React + Vite) - complete project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full, ready-to-run project (it has its own `package.json` and `index.html`),
+so you do not need your old driver folder.
 
-Currently, two official plugins are available:
+```bash
+npm install
+cp .env.example .env      # Windows: copy .env.example .env
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Then open the address the terminal prints (it will be `http://localhost:5174/`).
+Start the backend first (see `orban-backend.zip`): `npm run seed` then `npm run dev`.
+Demo login: `emeka@example.com` / `demo1234`.
 
-## React Compiler
+If your backend is not on port 5000, change `VITE_API_URL` in `.env` and restart `npm run dev`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Pages
+`/login` `/signup` `/` (online switch, earnings, requests) `/trips` `/history` `/vehicle` `/notifications` `/profile`
 
-## Expanding the ESLint configuration
+## How it is organised
+- `src/Context/DriverContext.jsx` - login session and every API call.
+- `src/Pages/` - one file per screen. `src/Components/` - trip and request cards, image picker, layout.
+- Going offline hides the car from riders' search (the backend checks it).
+- Photos are shrunk in the browser before upload (`src/utils/image.js`).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## What changed from your old driver app
+The old live-request dashboard is replaced by scheduled booking requests. That old screen called
+`${API_BASE}/requests` without `/api`, which is one reason it was not working.

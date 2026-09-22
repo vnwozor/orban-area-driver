@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom'
 import { DriverContext } from '../../Context/DriverContext'
 import { usePolling } from '../../hooks/usePolling'
 import { Icon, Logo } from '../UI/Icon'
 import { Avatar } from '../UI/Bits'
+import ThemeToggle from '../UI/ThemeToggle'
 
 const NAV = [
     { to: '/', label: 'Home', icon: 'home', match: (p) => p === '/', badge: 'requests' },
@@ -24,27 +25,10 @@ export function RequireDriver({ children }) {
 export default function DriverShell() {
     const { driver, counts, refreshCounts } = useContext(DriverContext)
     const { pathname } = useLocation()
-    const [dark, setDark] = useState(false)
-
     useEffect(() => {
         refreshCounts()
-        const saved = localStorage.getItem('orban_theme')
-        if (saved) {
-            document.documentElement.dataset.theme = saved
-            setDark(saved === 'dark')
-        }
     }, [refreshCounts])
     usePolling(refreshCounts, 15000)
-
-    const toggleTheme = () => {
-        const isDark = document.documentElement.dataset.theme
-            ? document.documentElement.dataset.theme === 'dark'
-            : window.matchMedia?.('(prefers-color-scheme: dark)').matches
-        const next = isDark ? 'light' : 'dark'
-        document.documentElement.dataset.theme = next
-        localStorage.setItem('orban_theme', next)
-        setDark(next === 'dark')
-    }
 
     return (
         <>
@@ -53,9 +37,7 @@ export default function DriverShell() {
                     <Logo />
                     <span>Orban Driver</span>
                 </Link>
-                <button className='icon-btn' style={{ marginLeft: 'auto' }} onClick={toggleTheme} aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}>
-                    <Icon name='moon' />
-                </button>
+                <ThemeToggle />
             </header>
             <div className='shell'>
                 <nav className='side' aria-label='Main'>

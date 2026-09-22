@@ -6,6 +6,9 @@ import './App.css'
 import App from './App.jsx'
 import { DriverContextProvider } from './Context/DriverContext.jsx'
 import { ToastProvider } from './Components/Toast/Toast.jsx'
+import { initTheme } from './utils/theme'
+
+initTheme()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>

@@ -13,6 +13,24 @@ const read = (key, fallback) => {
     }
 }
 
+
+// The apps expect { user, token } (or { driver, token }). If the server answers with something else
+// (for example an older backend is running, or VITE_API_URL points at the wrong place) we stop with a
+// clear message instead of crashing.
+const BAD_REPLY =
+    "The server's reply isn't what the app expects. Make sure the new Orban backend (orban-backend.zip) is running and VITE_API_URL in your .env points to it, then restart npm run dev."
+
+const asSession = (data, key) => {
+    const account = data?.[key] || data?.data || (data?._id ? data : null)
+    const token = data?.token || data?.accessToken
+    if (!account || typeof account !== 'object' || !token) {
+        console.error('Unexpected login/register response:', data)
+        throw Object.assign(new Error(BAD_REPLY), { status: 0 })
+    }
+    const { token: _ignored, ...rest } = account
+    return { [key]: rest, token }
+}
+
 export function DriverContextProvider({ children }) {
     const [driver, setDriverState] = useState(() => read('orban_driver', null))
     const [token, setToken] = useState(() => localStorage.getItem('orban_driver_token') || '')
@@ -71,8 +89,8 @@ export function DriverContextProvider({ children }) {
 
     const api = useMemo(
         () => ({
-            login: (identifier, password) => request('/api/drivers/login', { method: 'POST', body: { identifier, password } }),
-            register: (form) => request('/api/drivers', { method: 'POST', body: form }),
+            login: async (identifier, password) => asSession(await request('/api/drivers/login', { method: 'POST', body: { identifier, password } }), 'driver'),
+            register: async (form) => asSession(await request('/api/drivers', { method: 'POST', body: form }), 'driver'),
             me: () => request('/api/driver/me'),
             updateMe: (updates) => request('/api/driver/me', { method: 'PUT', body: updates }),
             saveVehicle: (vehicle) => request('/api/driver/vehicle', { method: 'PUT', body: vehicle }),

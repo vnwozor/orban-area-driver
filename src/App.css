@@ -438,3 +438,9 @@ a.nav-item{text-decoration:none}
 .inp{min-width:0}
 .inp input{width:100%}
 a.bell{color:var(--ink);text-decoration:none}
+
+/* theme toggle (sun / moon) */
+.icon-btn.theme-toggle{margin-left:auto;width:auto;padding:0 14px;gap:8px;font:600 14px var(--f-body);color:var(--on-night)}
+.icon-btn.theme-toggle .tt-label{display:inline}
+@media (max-width:640px){.icon-btn.theme-toggle{padding:0;width:44px;height:44px}.icon-btn.theme-toggle .tt-label{display:none}}
+.icon-btn.theme-toggle{display:inline-flex;align-items:center;justify-content:center;height:40px;white-space:nowrap}

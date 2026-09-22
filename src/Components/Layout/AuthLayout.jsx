@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Icon, Logo } from '../UI/Icon'
 import { CarArt } from '../CarArt/CarArt'
+import ThemeToggle from '../UI/ThemeToggle'
 
 // Shared frame for the Login and Signup pages.
 export default function AuthLayout({ tab, title, subtitle, children }) {
@@ -12,6 +13,7 @@ export default function AuthLayout({ tab, title, subtitle, children }) {
                     <Logo />
                     <span>Orban</span>
                 </div>
+                <ThemeToggle />
             </header>
             <div className='auth'>
                 <section className='auth-art'>
